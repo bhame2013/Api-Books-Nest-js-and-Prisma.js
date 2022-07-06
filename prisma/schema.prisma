@@ -3,15 +3,24 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url = "file:./dev.db"
+  provider = "postgres"
+  url      = "postgresql://tiago:1234@localhost:5432/codiecode"
 }
 
-model Book {
-  id String @id @default(uuid())
-  title String 
-  description String
-  bar_code String @unique
+model Category {
+  id    Int         @id @default(autoincrement())
+  title String
+  url   String
 
-  @@map("books")
+  parentId Int?
+}
+
+
+model User {
+  id Int @id @default(autoincrement())
+
+  email    String @unique
+  password String
+
+  name String
 }
