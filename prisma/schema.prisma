@@ -4,17 +4,16 @@ generator client {
 
 datasource db {
   provider = "postgres"
-  url      = "postgresql://tiago:1234@localhost:5432/codiecode"
+  url      = env("DATABASE_URL")
 }
 
 model Category {
-  id    Int         @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   title String
   url   String
 
   parentId Int?
 }
-
 
 model User {
   id Int @id @default(autoincrement())
